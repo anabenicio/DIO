@@ -1,2 +1,2 @@
 # dio
-Repositório de Projetos da Dio
+Repositório de Projetos e Desafios da Dio
