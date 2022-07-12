@@ -4,7 +4,7 @@ import java.util.Calendar;
 
 public class MensagemAdequada {
 
-	public void mensagemAdequada() {
+	public static void mensagemAdequada() {
 		
 		Calendar calendar = Calendar.getInstance();
 		int horarioDoDia = calendar.get(Calendar.HOUR_OF_DAY);

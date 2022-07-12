@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 public class Menu {
 
-	public void EscolherAOpccao() {
+	public static void EscolherAOpccao() {
 
 		int opcao;
 		Scanner scanner = new Scanner(System.in);
@@ -22,19 +22,17 @@ public class Menu {
 			quantidadeDeParcelas = scanner.nextInt();
 			System.out.println("Qual é a taxa de juros");
 			taxaDeJurosAoMes = scanner.nextDouble();
-
-			Emprestimo emprestimo = new Emprestimo();
-			emprestimo.ValorTotalEmprestimo(quantidadeDeParcelas, taxaDeJurosAoMes, valorDoEmprestimo);
+			
+			Emprestimo.ValorTotalEmprestimo(quantidadeDeParcelas, taxaDeJurosAoMes, valorDoEmprestimo);
 			break;
 		case 2:
-			MensagemAdequada mensagemAdequada = new MensagemAdequada();
-			mensagemAdequada.mensagemAdequada();
+						MensagemAdequada.mensagemAdequada();
 
 			break;
 
 		case 3:
 			int operacao;
-			Operacoes calcular = new Operacoes();
+			
 			float num1;
 			float num2;
 			System.out.println("Escolha a operação: \n 1 - Soma \n 2 - Multiplicação \n 3 - Divisão \n 4 - Subtração");
@@ -45,19 +43,19 @@ public class Menu {
 			num2 = scanner.nextFloat();
 			switch (operacao) {
 			case 1: 
-				System.out.println(calcular.Soma(num1, num2)); 
+				System.out.println(Operacoes.Soma(num1, num2)); 
 			default:
 				break;
 			case 2: 
-				System.out.println(calcular.Multiplicacao(num1, num2)); 
+				System.out.println(Operacoes.Multiplicacao(num1, num2)); 
 			
 				break;
 			case 3: 
-				System.out.println(calcular.Divisao(num1, num2)); 
+				System.out.println(Operacoes.Divisao(num1, num2)); 
 			
 				break;
 			case 4: 
-				System.out.println(calcular.subtracao(num1, num2)); 
+				System.out.println(Operacoes.subtracao(num1, num2)); 
 	
 				break;
 			}
