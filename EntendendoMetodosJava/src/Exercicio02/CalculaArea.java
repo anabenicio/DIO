@@ -1,7 +1,6 @@
 package Exercicio02;
 
 public class CalculaArea {
-	double valorDaArea;
 	
 
 	public static void calcularArea(double ladoQuadrado) {
