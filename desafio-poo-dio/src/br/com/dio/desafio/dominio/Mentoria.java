@@ -43,6 +43,20 @@ public class Mentoria extends Constantes implements InterfaceConteudo {
 	public void setData(LocalDate data) {
 		this.data = data;
 	}
+	
+	
+
+	public List<Dev> getDevsInscritos() {
+		return devsInscritos;
+	}
+
+	public void setDevsInscritos(List<Dev> devsInscritos) {
+		this.devsInscritos = devsInscritos;
+	}
+
+	public String getDescricao() {
+		return descricao;
+	}
 
 	@Override
 	public String toString() {

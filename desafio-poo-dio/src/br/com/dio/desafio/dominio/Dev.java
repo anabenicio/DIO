@@ -4,85 +4,79 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import br.com.dio.desafio.controlador.RealizarInscricao;
+
 public class Dev {
-	
+
 	private String nome;
 	private List<Curso> cursosInscritos = new ArrayList<>();
 	private List<Mentoria> mentoriasInscritas = new ArrayList<>();
 	private List<Curso> cursosConcluidos = new ArrayList<>();
 	private List<Mentoria> mentoriasConcluidas = new ArrayList<>();
-	private int countCursosIncritos = cursosInscritos.size();
-	private int countCursosConcluidos = cursosInscritos.size();
-	
-	
+	private List<Bootcamp> bootcampsInscritos = new ArrayList<>();
+
+	RealizarInscricao submmitInscricao = new RealizarInscricao();
+
 	public Dev() {
-		
+
 	}
 
 	public void inscreverBootcamp(Bootcamp bootcamp) {
-		boolean jaEinscrito = bootcamp.jaInscrito(Dev.this, cursosInscritos);
-		this.cursosInscritos.addAll(bootcamp.getCursos());
-		this.mentoriasInscritas.addAll(bootcamp.getMentoria());
-		
-		if(!jaEinscrito) {
-			bootcamp.getDevsInscritos().add(this);
-			System.out.println(bootcamp.getDevsInscritos());
-		}
-		
+		submmitInscricao.realizarInscricao(this, this.bootcampsInscritos, bootcamp.getDevsInscritos(),
+				bootcamp.getCursos());
+		submmitInscricao.realizarInscricao(this, this.bootcampsInscritos, bootcamp.getDevsInscritos(),
+				bootcamp.getMentoria());
+		bootcamp.getDevsInscritos().add(this);
+
 	}
-	
-	public void inscreverCurso() {
-		
+
+	public void inscreverCurso(MeusCursos meusCursos) {
+		Curso curso = new Curso();
+		submmitInscricao.realizarInscricao(this, this.cursosInscritos, curso.getDevsInscritos(), meusCursos.getCursos());
 	}
-	
+
 	public void inscreverMentoria() {
-		
+
 	}
-	
+
 	public void progredirBootcamp() {
-		if(cursosInscritos.isEmpty()&&mentoriasInscritas.size()!=0)
+		if (cursosInscritos.isEmpty() && mentoriasInscritas.size() != 0)
 			progredirMentoria();
-		else if(mentoriasInscritas.isEmpty()&&cursosInscritos.size()!=0)
+		else if (mentoriasInscritas.isEmpty() && cursosInscritos.size() != 0)
 			progredirCurso();
 		else {
 			progredirCurso();
 			progredirMentoria();
-						}
-			
-		
+		}
+
 	}
+
 	public void progredirCurso() {
 		Optional<Curso> curso = this.cursosInscritos.stream().findFirst();
-		if(curso.isPresent()) {
+		if (curso.isPresent()) {
 			this.cursosConcluidos.add(curso.get());
 			this.cursosInscritos.remove(curso.get());
 		} else
 			System.err.println("Lista de cursos vazia");
-		
+
 	}
-	
+
 	public void progredirMentoria() {
 		Optional<Mentoria> mentoria = this.mentoriasInscritas.stream().findFirst();
-		if(mentoria.isPresent()) {
+		if (mentoria.isPresent()) {
 			this.mentoriasConcluidas.add(mentoria.get());
 			this.mentoriasInscritas.remove(mentoria.get());
 		} else
 			System.err.println("Lista de mentorias vazia");
-		
+
 	}
-	
+
 	public double calcularTotalXp() {
-		
-		double totalXP = this.cursosConcluidos
-                .stream()
-                .mapToDouble(Curso::calcularXP)
-                .sum();
-		totalXP +=this.mentoriasConcluidas
-                .stream()
-                .mapToDouble(Mentoria::calcularXP)
-                .sum();
-	
-		return  totalXP;
+
+		double totalXP = this.cursosConcluidos.stream().mapToDouble(Curso::calcularXP).sum();
+		totalXP += this.mentoriasConcluidas.stream().mapToDouble(Mentoria::calcularXP).sum();
+
+		return totalXP;
 	}
 
 	public String getNome() {
@@ -124,13 +118,22 @@ public class Dev {
 	public void setMentoriasConcluidas(List<Mentoria> mentoriasConcluidas) {
 		this.mentoriasConcluidas = mentoriasConcluidas;
 	}
+	
+	
+
+	public List<Bootcamp> getBootcampsInscritos() {
+		return bootcampsInscritos;
+	}
+
+	public void setBootcampsInscritos(List<Bootcamp> bootcampsInscritos) {
+		this.bootcampsInscritos = bootcampsInscritos;
+	}
 
 	@Override
 	public String toString() {
 		return "Dev [nome=" + nome + ", cursosInscritos=" + cursosInscritos + ", mentoriasInscritas="
 				+ mentoriasInscritas + ", cursosConcluidos=" + cursosConcluidos + ", mentoriasConcluidas="
-				+ mentoriasConcluidas + "]";
+				+ mentoriasConcluidas + ", bootcampsInscritos=" + bootcampsInscritos + "]";
 	}
-	
 
 }

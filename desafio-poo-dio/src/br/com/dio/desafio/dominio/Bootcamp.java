@@ -16,7 +16,6 @@ public class Bootcamp {
 	private List<Curso> cursos = new ArrayList<>();
 	private List<Mentoria> mentoria = new ArrayList<>();
 
-
 	public String getDescricao() {
 		return descricao;
 	}
@@ -66,11 +65,13 @@ public class Bootcamp {
 	public LocalDate getDataFinal() {
 		return dataFinal;
 	}
+	
+	
 
 	@Override
 	public String toString() {
 		return "Bootcamp [dataInicial=" + dataInicial + ", dataFinal=" + dataFinal + ", descricao=" + descricao
-				+ ", titulo=" + titulo + ", devsInscritos=" + devsInscritos + ", conteudos=" + cursos + ", mentoria="
+				+ ", titulo=" + titulo +  ", conteudos=" + cursos + ", mentoria="
 				+ mentoria + "]";
 	}
 	
