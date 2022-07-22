@@ -1,6 +1,8 @@
 package br.com.dio.desafio.dominio;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 import br.com.dio.desafio.constantes.Constantes;
 import br.com.dio.desafio.interfaces.InterfaceConteudo;
@@ -10,6 +12,7 @@ public class Mentoria extends Constantes implements InterfaceConteudo {
 	private String titulo;
     private String descricao;
     private LocalDate data;
+    private List<Dev> devsInscritos = new ArrayList<>();
     
 	@Override
 	public double calcularXP() {

@@ -13,16 +13,9 @@ public class Bootcamp {
 	private String titulo;
 
 	private List<Dev> devsInscritos = new ArrayList<>();
-	private List<Curso> conteudos = new ArrayList<>();
+	private List<Curso> cursos = new ArrayList<>();
 	private List<Mentoria> mentoria = new ArrayList<>();
 
-	public boolean jaInscrito(Dev dev) {
-
-		if (devsInscritos.contains(dev))
-			return true;
-
-		return false;
-	}
 
 	public String getDescricao() {
 		return descricao;
@@ -50,12 +43,12 @@ public class Bootcamp {
 
 	
 
-	public List<Curso> getConteudos() {
-		return conteudos;
+	public List<Curso> getCursos() {
+		return cursos;
 	}
 
-	public void setConteudos(List<Curso> conteudos) {
-		this.conteudos = conteudos;
+	public void setCursos(List<Curso> conteudos) {
+		this.cursos = conteudos;
 	}
 
 	public List<Mentoria> getMentoria() {
@@ -77,7 +70,7 @@ public class Bootcamp {
 	@Override
 	public String toString() {
 		return "Bootcamp [dataInicial=" + dataInicial + ", dataFinal=" + dataFinal + ", descricao=" + descricao
-				+ ", titulo=" + titulo + ", devsInscritos=" + devsInscritos + ", conteudos=" + conteudos + ", mentoria="
+				+ ", titulo=" + titulo + ", devsInscritos=" + devsInscritos + ", conteudos=" + cursos + ", mentoria="
 				+ mentoria + "]";
 	}
 	
