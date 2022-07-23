@@ -40,8 +40,6 @@ public class Bootcamp {
 		this.devsInscritos = devsInscritos;
 	}
 
-	
-
 	public List<Curso> getCursos() {
 		return cursos;
 	}
@@ -65,16 +63,11 @@ public class Bootcamp {
 	public LocalDate getDataFinal() {
 		return dataFinal;
 	}
-	
-	
 
 	@Override
 	public String toString() {
 		return "Bootcamp [dataInicial=" + dataInicial + ", dataFinal=" + dataFinal + ", descricao=" + descricao
-				+ ", titulo=" + titulo +  ", conteudos=" + cursos + ", mentoria="
-				+ mentoria + "]";
+				+ ", titulo=" + titulo + ", conteudos=" + cursos + ", mentoria=" + mentoria + "]";
 	}
-	
-	
 
 }

@@ -10,10 +10,10 @@ import br.com.dio.desafio.interfaces.InterfaceConteudo;
 public class Mentoria extends Constantes implements InterfaceConteudo {
 
 	private String titulo;
-    private String descricao;
-    private LocalDate data;
-    private List<Dev> devsInscritos = new ArrayList<>();
-    
+	private String descricao;
+	private LocalDate data;
+	private List<Dev> devsInscritos = new ArrayList<>();
+
 	@Override
 	public double calcularXP() {
 		return xp_padrao + 20d;
@@ -43,8 +43,6 @@ public class Mentoria extends Constantes implements InterfaceConteudo {
 	public void setData(LocalDate data) {
 		this.data = data;
 	}
-	
-	
 
 	public List<Dev> getDevsInscritos() {
 		return devsInscritos;
@@ -62,9 +60,5 @@ public class Mentoria extends Constantes implements InterfaceConteudo {
 	public String toString() {
 		return "Mentoria [titulo=" + titulo + ", descricao=" + descricao + ", data=" + data + "]";
 	}
-	
-	
-	
-	
 
 }

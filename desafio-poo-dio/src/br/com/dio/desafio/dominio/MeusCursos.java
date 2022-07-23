@@ -4,11 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MeusCursos {
-	
-	Curso curso = new Curso();
-	
-	private List<Curso> cursos = new ArrayList<>();
 
+	Curso curso = new Curso();
+
+	private List<Curso> cursos = new ArrayList<>();
 
 	public List<Curso> getCursos() {
 		return cursos;
@@ -18,11 +17,9 @@ public class MeusCursos {
 		this.cursos = conteudos;
 	}
 
-
 	@Override
 	public String toString() {
 		return "MeusCursos [cursos=" + cursos + "]";
 	}
-	
-	
+
 }

@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-import br.com.dio.desafio.controlador.RealizarInscricao;
+import br.com.dio.desafio.controlador.ControllerInscricoes;
 
 public class Dev {
 
@@ -14,17 +14,20 @@ public class Dev {
 	private List<Curso> cursosConcluidos = new ArrayList<>();
 	private List<Mentoria> mentoriasConcluidas = new ArrayList<>();
 	private List<Bootcamp> bootcampsInscritos = new ArrayList<>();
+	private List<Bootcamp> bootcampsConcluidos = new ArrayList<>();
+	private Optional<Curso> curso;
+	private Optional<Mentoria> mentoria;
 
-	RealizarInscricao submmitInscricao = new RealizarInscricao();
+	ControllerInscricoes controllerInscricao = new ControllerInscricoes();
 
 	public Dev() {
 
 	}
 
 	public void inscreverBootcamp(Bootcamp bootcamp) {
-		submmitInscricao.realizarInscricao(this, this.bootcampsInscritos, bootcamp.getDevsInscritos(),
+		controllerInscricao.realizarInscricao(this, this.bootcampsInscritos, bootcamp.getDevsInscritos(),
 				bootcamp.getCursos());
-		submmitInscricao.realizarInscricao(this, this.bootcampsInscritos, bootcamp.getDevsInscritos(),
+		controllerInscricao.realizarInscricao(this, this.bootcampsInscritos, bootcamp.getDevsInscritos(),
 				bootcamp.getMentoria());
 		bootcamp.getDevsInscritos().add(this);
 
@@ -32,42 +35,34 @@ public class Dev {
 
 	public void inscreverCurso(MeusCursos meusCursos) {
 		Curso curso = new Curso();
-		submmitInscricao.realizarInscricao(this, this.cursosInscritos, curso.getDevsInscritos(), meusCursos.getCursos());
+		controllerInscricao.realizarInscricao(this, this.cursosInscritos, curso.getDevsInscritos(),
+				meusCursos.getCursos());
 	}
 
-	public void inscreverMentoria() {
-
+	public void inscreverMentoria(MinhasMentorias minhasMentorias) {
+		Mentoria mentoria = new Mentoria();
+		controllerInscricao.realizarInscricao(this, this.mentoriasInscritas, mentoria.getDevsInscritos(),
+				minhasMentorias.getMinhasMentoria());
 	}
 
 	public void progredirBootcamp() {
 		if (cursosInscritos.isEmpty() && mentoriasInscritas.size() != 0)
-			progredirMentoria();
+			controllerInscricao.progredir(bootcampsInscritos, bootcampsConcluidos, mentoria);
 		else if (mentoriasInscritas.isEmpty() && cursosInscritos.size() != 0)
-			progredirCurso();
+			controllerInscricao.progredir(bootcampsInscritos, bootcampsConcluidos, curso);
 		else {
-			progredirCurso();
-			progredirMentoria();
+			controllerInscricao.progredir(bootcampsInscritos, bootcampsConcluidos, mentoria);
+			controllerInscricao.progredir(bootcampsInscritos, bootcampsConcluidos, curso);
 		}
-
 	}
 
 	public void progredirCurso() {
-		Optional<Curso> curso = this.cursosInscritos.stream().findFirst();
-		if (curso.isPresent()) {
-			this.cursosConcluidos.add(curso.get());
-			this.cursosInscritos.remove(curso.get());
-		} else
-			System.err.println("Lista de cursos vazia");
 
+		controllerInscricao.progredir(cursosInscritos, cursosConcluidos, curso);
 	}
 
 	public void progredirMentoria() {
-		Optional<Mentoria> mentoria = this.mentoriasInscritas.stream().findFirst();
-		if (mentoria.isPresent()) {
-			this.mentoriasConcluidas.add(mentoria.get());
-			this.mentoriasInscritas.remove(mentoria.get());
-		} else
-			System.err.println("Lista de mentorias vazia");
+		controllerInscricao.progredir(mentoriasInscritas, mentoriasConcluidas, mentoria);
 
 	}
 
@@ -118,8 +113,6 @@ public class Dev {
 	public void setMentoriasConcluidas(List<Mentoria> mentoriasConcluidas) {
 		this.mentoriasConcluidas = mentoriasConcluidas;
 	}
-	
-	
 
 	public List<Bootcamp> getBootcampsInscritos() {
 		return bootcampsInscritos;
@@ -127,6 +120,14 @@ public class Dev {
 
 	public void setBootcampsInscritos(List<Bootcamp> bootcampsInscritos) {
 		this.bootcampsInscritos = bootcampsInscritos;
+	}
+
+	public List<Bootcamp> getBootcampsConcluidos() {
+		return bootcampsConcluidos;
+	}
+
+	public void setBootcampsConcluidos(List<Bootcamp> bootcampsConcluidos) {
+		this.bootcampsConcluidos = bootcampsConcluidos;
 	}
 
 	@Override
